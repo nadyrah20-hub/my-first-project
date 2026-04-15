@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#overview">Overview</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#analytics">Analytics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#users">Users</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-light py-5">
+        <div class="container text-center">
+            <h1 class="display-5">Welcome, Admin</h1>
+            <p class="lead">Monitor site activity, manage users, and review key metrics.</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section id="overview" class="mb-4">
+            <div class="row g-4">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card shadow-sm border-start border-4 border-primary">
+                        <div class="card-body">
+                            <h6 class="text-uppercase text-muted">Total Users</h6>
+                            <p class="display-6 mb-0" id="totalUsers">1,234</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card shadow-sm border-start border-4 border-success">
+                        <div class="card-body">
+                            <h6 class="text-uppercase text-muted">Total Roles</h6>
+                            <p class="display-6 mb-0" id="totalRoles">8</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card shadow-sm border-start border-4 border-warning">
+                        <div class="card-body">
+                            <h6 class="text-uppercase text-muted">Total Activities</h6>
+                            <p class="display-6 mb-0" id="totalActivities">324</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card shadow-sm border-start border-4 border-info">
+                        <div class="card-body">
+                            <h6 class="text-uppercase text-muted">Total Data</h6>
+                            <p class="display-6 mb-0" id="totalData">57 GB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="filter" class="mb-5">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <label for="filterPeriod" class="form-label">Filter by period</label>
+                            <select id="filterPeriod" class="form-select">
+                                <option value="all">All time</option>
+                                <option value="week">Last 7 days</option>
+                                <option value="month" selected>Last 30 days</option>
+                                <option value="quarter">Last 90 days</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="filterType" class="form-label">Filter type</label>
+                            <select id="filterType" class="form-select">
+                                <option value="activity">Activity</option>
+                                <option value="users">Users</option>
+                                <option value="data">Data</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button id="applyFilter" class="btn btn-primary w-100">Apply Filter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analytics" class="mb-5">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title">Activity Breakdown</h4>
+                            <canvas id="pieChart" height="280"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title">Monthly Activity</h4>
+                            <canvas id="barChart" height="280"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="users" class="mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Recent Users</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Rania Ahmad</td>
+                                    <td>rania@example.com</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Faris Mahmud</td>
+                                    <td>faris@example.com</td>
+                                    <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Amina Saad</td>
+                                    <td>amina@example.com</td>
+                                    <td><span class="badge bg-danger">Inactive</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="chatbot" class="mb-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Admin Chatbot</h4>
+                    <div class="mb-3">
+                        <label for="openaiKey" class="form-label">OpenAI API Key</label>
+                        <input id="openaiKey" type="password" class="form-control" placeholder="Paste your OpenAI API key">
+                        <div class="form-text">Leave this blank to use the built-in fallback chatbot.</div>
+                    </div>
+                    <div id="chatStatus" class="small text-muted mb-3">AI mode is off. Add an API key to enable OpenAI responses.</div>
+                    <div id="chatWindow" class="border rounded p-3 mb-3" style="height: 280px; overflow-y: auto; background: #f8f9fa;"></div>
+                    <div class="input-group">
+                        <input id="chatInput" type="text" class="form-control" placeholder="Ask the dashboard..." aria-label="Chat message">
+                        <button id="sendChat" class="btn btn-primary" type="button">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 My First Project | Admin Dashboard</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const filterConfig = {
+            all: {
+                totalUsers: 1234,
+                totalRoles: 8,
+                totalActivities: 324,
+                totalData: '57 GB',
+                pie: [45, 30, 15, 10],
+                bar: [120, 132, 101, 134, 90, 230, 210, 180, 145, 170, 190, 220]
+            },
+            week: {
+                totalUsers: 42,
+                totalRoles: 8,
+                totalActivities: 58,
+                totalData: '5.1 GB',
+                pie: [40, 35, 15, 10],
+                bar: [8, 12, 10, 14, 11, 9, 15, 13, 12, 14, 16, 18]
+            },
+            month: {
+                totalUsers: 210,
+                totalRoles: 8,
+                totalActivities: 192,
+                totalData: '22 GB',
+                pie: [38, 32, 18, 12],
+                bar: [15, 18, 22, 20, 24, 28, 30, 27, 26, 25, 29, 32]
+            },
+            quarter: {
+                totalUsers: 680,
+                totalRoles: 8,
+                totalActivities: 312,
+                totalData: '48 GB',
+                pie: [42, 28, 18, 12],
+                bar: [55, 60, 62, 58, 64, 70, 68, 66, 72, 74, 76, 80]
+            }
+        };
+
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        const barCtx = document.getElementById('barChart').getContext('2d');
+
+        const pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Logins', 'Uploads', 'Downloads', 'Other'],
+                datasets: [{
+                    data: filterConfig.month.pie,
+                    backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#0dcaf0']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        const barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Activities',
+                    data: filterConfig.month.bar,
+                    backgroundColor: '#0d6efd'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function updateDashboard(filterKey) {
+            const config = filterConfig[filterKey];
+            document.getElementById('totalUsers').textContent = config.totalUsers;
+            document.getElementById('totalRoles').textContent = config.totalRoles;
+            document.getElementById('totalActivities').textContent = config.totalActivities;
+            document.getElementById('totalData').textContent = config.totalData;
+
+            pieChart.data.datasets[0].data = config.pie;
+            pieChart.update();
+
+            barChart.data.datasets[0].data = config.bar;
+            barChart.update();
+        }
+
+        document.getElementById('applyFilter').addEventListener('click', () => {
+            const period = document.getElementById('filterPeriod').value;
+            updateDashboard(period);
+        });
+
+        const chatWindow = document.getElementById('chatWindow');
+        const chatInput = document.getElementById('chatInput');
+        const sendChat = document.getElementById('sendChat');
+        const openaiKeyInput = document.getElementById('openaiKey');
+        const chatStatus = document.getElementById('chatStatus');
+
+        const botResponses = {
+            hello: 'Hello! How can I assist you with the dashboard today?',
+            users: 'There are currently 1,234 total users and 8 roles in the system.',
+            roles: 'Roles available: Admin, Editor, Contributor, Viewer, and more.',
+            activity: 'Recent activity is strong this month, with 324 total actions recorded.',
+            data: 'Total stored data is currently 57 GB. Keep an eye on growth over time.',
+            default: 'I can help with dashboard metrics, user info, roles, and activity. Try asking about users or activity.'
+        };
+
+        function addMessage(message, sender) {
+            const messageEl = document.createElement('div');
+            messageEl.className = sender === 'bot' ? 'text-start mb-2' : 'text-end mb-2';
+            messageEl.innerHTML = `<span class="badge ${sender === 'bot' ? 'bg-secondary' : 'bg-primary'} me-2">${sender === 'bot' ? 'Bot' : 'You'}</span><span>${message}</span>`;
+            chatWindow.appendChild(messageEl);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function updateChatStatus() {
+            const key = openaiKeyInput.value.trim();
+            if (key) {
+                chatStatus.textContent = 'AI mode enabled. Chatbot will use OpenAI for replies.';
+            } else {
+                chatStatus.textContent = 'AI mode is off. Add an API key to enable OpenAI responses.';
+            }
+        }
+
+        async function fetchOpenAIReply(prompt) {
+            const apiKey = openaiKeyInput.value.trim();
+            if (!apiKey) return null;
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: 'gpt-3.5-turbo',
+                    messages: [{ role: 'user', content: prompt }],
+                    temperature: 0.7,
+                    max_tokens: 250
+                })
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || 'OpenAI request failed');
+            }
+
+            const result = await response.json();
+            return result.choices?.[0]?.message?.content?.trim() || null;
+        }
+
+        function getBotReply(text) {
+            const normalized = text.trim().toLowerCase();
+            if (normalized.includes('hello') || normalized.includes('hi')) return botResponses.hello;
+            if (normalized.includes('user')) return botResponses.users;
+            if (normalized.includes('role')) return botResponses.roles;
+            if (normalized.includes('activity')) return botResponses.activity;
+            if (normalized.includes('data')) return botResponses.data;
+            return botResponses.default;
+        }
+
+        async function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            addMessage(text, 'user');
+            chatInput.value = '';
+
+            const apiKey = openaiKeyInput.value.trim();
+            if (apiKey) {
+                addMessage('Thinking...', 'bot');
+                try {
+                    const aiReply = await fetchOpenAIReply(text);
+                    if (aiReply) {
+                        chatWindow.lastChild.remove();
+                        addMessage(aiReply, 'bot');
+                    } else {
+                        chatWindow.lastChild.remove();
+                        addMessage('I could not get a response from OpenAI. Please check your API key and try again.', 'bot');
+                    }
+                } catch (error) {
+                    chatWindow.lastChild.remove();
+                    addMessage('OpenAI error: ' + error.message, 'bot');
+                }
+            } else {
+                addMessage(getBotReply(text), 'bot');
+            }
+        }
+
+        openaiKeyInput.addEventListener('input', updateChatStatus);
+        sendChat.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+
+        updateChatStatus();
+    </script>
+</body>
+</html>
