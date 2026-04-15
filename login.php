@@ -5,8 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Hardcoded credentials for demonstration
     if ($username == "admin" && $password == "password") {
-        echo "Login successful! Welcome, " . htmlspecialchars($username) . ".";
-        // You can redirect to another page here, e.g., header("Location: index.html");
+        header("Location: dashboard.html");
+        exit;
     } else {
         echo "Invalid username or password.";
     }
